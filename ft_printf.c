@@ -6,7 +6,7 @@
 /*   By: jaragao- <jaragao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:09:09 by jaragao-          #+#    #+#             */
-/*   Updated: 2022/11/29 15:02:04 by jaragao-         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:08:09 by jaragao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_printstr(char *str)
 	i = 0;
 	while (str[i])
 	{
-		write(1, str[i], 1);
+		write(1, &str[i], 1);
 		i++;
 	}
 	return (i);
@@ -33,8 +33,8 @@ int	ft_printstr(char *str)
 
 int	ft_printnbr(int n)
 {
-	char *zas;
-	int	len;
+	char	*zas;
+	int		len;
 
 	len = 0;
 	zas = ft_itoa(n);
@@ -46,19 +46,19 @@ int	ft_printnbr(int n)
 int	ft_output(va_list ptr, char c, int length)
 {
 	if (c == 'c')
-		return (length += write(1, va_arg(ptr, char), 1));
+		return (length += ft_printchar(va_arg(ptr, int)));
 	else if (c == 's')
-		return (length += ft_printstr(va_arg(ptr, *char)));
+		return (length += ft_printstr(va_arg(ptr, char *)));
 	else if (c == 'd' || c == 'i')
-		return (length += ft_printnbr(var_arg(ptr, int)));
-	else if (c == 'x' || == 'X')
-		return (length += ft_printhex(var_arg(ptr, unsigned int), c));
+		return (length += ft_printnbr(va_arg(ptr, int)));
+	else if (c == 'x' || c == 'X')
+		return (length += ft_printhex(va_arg(ptr, unsigned int), c));
 	else if (c == 'u')
-		return (length += ft_printunsigned(var_arg(ptr, unsigned int)));
+		return (length += ft_printunsigned(va_arg(ptr, unsigned int)));
 	else if (c == 'p')
-		return (length += ft_printptr(var_arg(ptr, unsigned long long)));
+		return (length += ft_printptr(va_arg(ptr, unsigned long long)));
 	else if (c == '%')
-		write(1, '%', 1);
+		return (write(1, "%", 1));
 	else
 		return (length);
 }
@@ -80,7 +80,7 @@ int	ft_printf(const char *str, ...)
 			length += ft_output(ptr, str[i], length);
 		}
 		else
-			length += write(1, str[i], 1);
+			length += write(1, &str[i], 1);
 		i++;
 	}
 	va_end(ptr);

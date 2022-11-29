@@ -6,7 +6,7 @@
 /*   By: jaragao- <jaragao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:00:44 by jaragao-          #+#    #+#             */
-/*   Updated: 2022/11/29 14:03:19 by jaragao-         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:06:58 by jaragao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	ft_hexlen(unsigned int n)
 	return (counter);
 }
 
-int	ft_puthex(unsigned int n, char c)
+void	ft_puthex(unsigned int n, char c)
 {
 	while (n > 16)
 	{
-		ft_puthex(n / 16);
+		ft_puthex(n / 16, c);
 		n /= 16;
 	}
 	if (n <= 9)

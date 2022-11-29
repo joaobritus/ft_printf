@@ -6,7 +6,7 @@
 /*   By: jaragao- <jaragao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:16:30 by jaragao-          #+#    #+#             */
-/*   Updated: 2022/11/29 13:40:01 by jaragao-         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:00:08 by jaragao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_printunsigned(unsigned int n)
 	{
 		str = ft_uitoa(n);
 		len = ft_printstr(str);
-		free(n);//n ou str?
+		free(str);
 	}
 	return (len);
 }

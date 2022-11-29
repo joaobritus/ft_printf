@@ -6,7 +6,7 @@
 /*   By: jaragao- <jaragao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 13:40:34 by jaragao-          #+#    #+#             */
-/*   Updated: 2022/11/29 15:03:54 by jaragao-         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:07:11 by jaragao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_putptr(unsigned long long n)
 
 int	ft_printptr(unsigned long long n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (!n)
@@ -51,9 +51,6 @@ int	ft_printptr(unsigned long long n)
 		return (len);
 	}
 	len = write(1, "0x", 2);
-	if (n == 0)
-		len += write(1, "0", 1);
-	else
-		ft_putptr(n);
-	return (ft_ptrlen);
+	ft_putptr(n);
+	return (ft_ptrlen(n + 2));
 }
