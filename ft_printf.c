@@ -6,16 +6,15 @@
 /*   By: jaragao- <jaragao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:09:09 by jaragao-          #+#    #+#             */
-/*   Updated: 2022/11/29 17:08:09 by jaragao-         ###   ########.fr       */
+/*   Updated: 2022/11/30 15:01:30 by jaragao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printchar(char a)
+int	ft_printchar(int a)
 {
-	write(1, &a, 1);
-	return (1);
+	return (write(1, &a, 1));
 }
 
 int	ft_printstr(char *str)
@@ -43,24 +42,26 @@ int	ft_printnbr(int n)
 	return (len);
 }
 
-int	ft_output(va_list ptr, char c, int length)
+int	ft_output(va_list ptr, char c)
 {
+	int	len;
+
+	len = 0;
 	if (c == 'c')
-		return (length += ft_printchar(va_arg(ptr, int)));
+		len += ft_printchar(va_arg(ptr, int));
 	else if (c == 's')
-		return (length += ft_printstr(va_arg(ptr, char *)));
+		len += ft_printstr(va_arg(ptr, char *));
 	else if (c == 'd' || c == 'i')
-		return (length += ft_printnbr(va_arg(ptr, int)));
+		len += ft_printnbr(va_arg(ptr, int));
 	else if (c == 'x' || c == 'X')
-		return (length += ft_printhex(va_arg(ptr, unsigned int), c));
+		len += ft_printhex(va_arg(ptr, unsigned int), c);
 	else if (c == 'u')
-		return (length += ft_printunsigned(va_arg(ptr, unsigned int)));
+		len += ft_printunsigned(va_arg(ptr, unsigned int));
 	else if (c == 'p')
-		return (length += ft_printptr(va_arg(ptr, unsigned long long)));
+		len += ft_printptr(va_arg(ptr, unsigned long long));
 	else if (c == '%')
-		return (write(1, "%", 1));
-	else
-		return (length);
+		len = write(1, "%", 1);
+	return (len);
 }
 
 int	ft_printf(const char *str, ...)
@@ -77,7 +78,7 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			length += ft_output(ptr, str[i], length);
+			length += ft_output(ptr, str[i]);
 		}
 		else
 			length += write(1, &str[i], 1);
