@@ -6,7 +6,7 @@
 /*   By: jaragao- <jaragao-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:09:09 by jaragao-          #+#    #+#             */
-/*   Updated: 2022/11/30 15:01:30 by jaragao-         ###   ########.fr       */
+/*   Updated: 2022/11/30 16:25:55 by jaragao-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int	ft_printstr(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
 	while (str[i])
 	{
 		write(1, &str[i], 1);
